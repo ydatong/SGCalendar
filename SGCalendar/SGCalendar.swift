@@ -175,21 +175,19 @@ class DayView: UIView {
         //设置代理，在动画开始和结束的代理方法中可以处理一些事情
         transitioin.delegate = self
         if translation.y < 0 {//上
-//            if translation.x > 0 {//右上角翻页
-//                animationContainerView.layer.transform = CATransform3DMakeRotation(CGFloat(M_PI), 0, 1, 0)
-//                dayView.layer.transform = CATransform3DMakeRotation(CGFloat(-M_PI), 0, 1, 0)
-//            }
-//            transitioin.type = kPageCurlKey
-            transitioin.type = kCATransitionFade
+            if translation.x > 0 {//右上角翻页
+                animationContainerView.layer.transform = CATransform3DMakeRotation(CGFloat(M_PI), 0, 1, 0)
+                dayView.layer.transform = CATransform3DMakeRotation(CGFloat(-M_PI), 0, 1, 0)
+            }
+            transitioin.type = kPageCurlKey
             transitioin.subtype = kCATransitionFromBottom
             transitioin.setValue("next", forKey: "month")
         }else{//下
-//            if translation.x < 0 {//左下角翻页
-//                animationContainerView.layer.transform = CATransform3DMakeRotation(CGFloat(M_PI), 0, 1, 0)
-//                dayView.layer.transform = CATransform3DMakeRotation(CGFloat(-M_PI), 0, 1, 0)
-//            }
-//            transitioin.type = kPageUnCurlKey
-            transitioin.type = kCATransitionFade
+            if translation.x < 0 {//左下角翻页
+                animationContainerView.layer.transform = CATransform3DMakeRotation(CGFloat(M_PI), 0, 1, 0)
+                dayView.layer.transform = CATransform3DMakeRotation(CGFloat(-M_PI), 0, 1, 0)
+            }
+            transitioin.type = kPageUnCurlKey
             transitioin.subtype = kCATransitionFromTop
             transitioin.setValue("pre", forKey: "month")
         }
